@@ -1,370 +1,48 @@
-<?php
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
 
-<?php
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        {% block stylesheets %}
+        {% endblock %}
 
-namespace App\Entity;
-
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
-
-
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
-{
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
-
-    #[ORM\Column]
-    private array $roles = [];
-
-    #[Assert\Length(
-        min: 4,
-        max: 50,
-        minMessage: 'Your first name must be at least {{ limit }} characters long',
-        maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
-    )]
-    #[Assert\Regex(
-        pattern : "/^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[0-9])(?=\S*[[:punct:]|§µ¤£¨])\S{4,}$/",
-        match : true,
-        message : "Votre mot de passe doit contenir 4 caractères au minimum dont un caractère spécial, un minuscule, une majuscule, un chiffre")]
-    private $plainPassword;
-
-    /**
-     * @var string The hashed password
-     */
-    #[ORM\Column]
-    private ?string $password = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $name = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $firstName = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $pseudo = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $address = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $address2 = null;
-
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $zipCode = null;
-
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $city = null;
-
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $country = null;
-
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
-    private ?Avatar $avatar = null;
-
-    #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
-
-    #[ORM\ManyToMany(targetEntity: Book::class, inversedBy: 'users')]
-    private Collection $books;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $secretIV = null;
-
-
-// ##################################################################### //
-// ############################ CONSTRUCTEUR ########################### //
-// ##################################################################### //
-
-    public function __construct()
-    {
-        $this->books = new ArrayCollection();
-    }
-// ##################################################################### //
-// ########################### GETTER/SETTER ########################### //
-// ##################################################################### //
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->email;
-    }
-
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->email;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     */
-    public function getSalt(): ?string
-    {
-        return null;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(?string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getPseudo(): ?string
-    {
-        return $this->pseudo;
-    }
-
-    public function setPseudo(?string $pseudo): self
-    {
-        $this->pseudo = $pseudo;
-
-        return $this;
-    }
-
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(?string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    public function getAddress2(): ?string
-    {
-        return $this->address2;
-    }
-
-    public function setAddress2(?string $address2): self
-    {
-        $this->address2 = $address2;
-
-        return $this;
-    }
-
-    public function getZipCode(): ?string
-    {
-        return $this->zipCode;
-    }
-
-    public function setZipCode(?string $zipCode): self
-    {
-        $this->zipCode = $zipCode;
-
-        return $this;
-    }
-
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function setCity(?string $city): self
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?string $country): self
-    {
-        $this->country = $country;
-
-        return $this;
-    }
+        <link rel="stylesheet" href="{{asset("css/styles.min.css")}}">
+    </head>
 
     
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand " href="{{path ("app_front")}}" title="Accueil">NANI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" title="Info">Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path ("app_register")}}" title="Inscription">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path ("app_login")}}" title="Connexion">Connexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </nav>
+        
+        <main class="container bg-white shadow py-3 rounded-bottom">
+            {% block body %}{% endblock %}
+        </main>
 
-    public function getAvatar(): ?Avatar
-    {
-        return $this->avatar;
-    }
-
-    public function setAvatar(Avatar $avatar): self
-    {
-        // set the owning side of the relation if necessary
-        if ($avatar->getUser() !== $this) {
-            $avatar->setUser($this);
-        }
-
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of plainPassword
-     */ 
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    /**
-     * Set the value of plainPassword
-     *
-     * @return  self
-     */ 
-    public function setPlainPassword($plainPassword)
-    {
-        $this->plainPassword = $plainPassword;
-
-        return $this;
-    }
-
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(bool $isVerified): self
-    {
-        $this->isVerified = $isVerified;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Book>
-     */
-    public function getBooks(): Collection
-    {
-        return $this->books;
-    }
-
-    public function addBook(Book $book): self
-    {
-        if (!$this->books->contains($book)) {
-            $this->books->add($book);
-        }
-
-        return $this;
-    }
-
-    public function removeBook(Book $book): self
-    {
-        $this->books->removeElement($book);
-
-        return $this;
-    }
-
-    public function getSecretIV(): ?string
-    {
-        return $this->secretIV;
-    }
-
-    public function setSecretIV(string $secretIV): self
-    {
-        $this->secretIV = $secretIV;
-
-        return $this;
-    }
-}
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
+</html>
