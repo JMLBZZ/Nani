@@ -1,0 +1,32 @@
+body{
+    background-color:rgb(72, 72, 235);
+    label{
+        &.required{
+            &::after{
+                content:"*";
+                color:red;}
+            }
+        }
+}
+
+.img-list{
+    width: 100%;
+    max-width: 100px;
+}
+
+.pagination{
+    .active{
+        .page-link{
+            background-color: #4e4e4e;
+            border-color: #4e4e4e;
+            color: white;
+        }
+    }
+    .page-link{
+        color: #4e4e4e;
+    }
+    .page-link:hover{
+        color : #4e4e4e;
+        text-decoration:none;
+    }
+}

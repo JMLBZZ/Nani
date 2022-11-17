@@ -1,0 +1,17 @@
+vich_uploader:
+    db_driver: orm
+
+    metadata:
+        type: attribute
+
+    mappings:
+        carousel:
+            uri_prefix: /images/carousel_home
+            upload_destination: '%kernel.project_dir%/public/images/carousel_home'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        nursery:
+            uri_prefix: /images/nursery
+            upload_destination: '%kernel.project_dir%/public/images/nursery'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+

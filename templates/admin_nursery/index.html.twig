@@ -1,0 +1,72 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Accueil</h1>
+        <a href="{{ path('app_admin_nursery_new') }}" class="btn btn-dark" title="Nouveau">Nouveau</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Photo</th>
+                <th>Nom</th>
+                {# <th>N° Siret</th> #}
+                <th>Adresse</th>
+                <th>Complement d'adresse</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                {# <th>Tél.</th>
+                <th>Capacité total</th>
+                <th>Capacité de réservation</th> #}
+                <th class="text-end">Activé ?</th>
+                {# <th>Slug</th> #}
+                <th class="text-end">Voir / Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nursery in nurseries %}
+            <tr>
+                {# <td>{{ nursery.id }}</td> #}
+                <td>
+                    <a href="{{asset('images/nursery/' ~ nursery.imageName)}}" data-lightbox="{{ nursery.imageName }}" data-title="{{ nursery.imageName }}">
+                        <img src="{{asset('images/nursery/' ~ nursery.imageName)}}" class="img-list" alt="{{ nursery.imageName }}">
+                    </a>
+                </td>
+                <td>{{ nursery.name }}</td>
+                {# <td>{{ nursery.siret }}</td> #}
+                <td>{{ nursery.street }}</td>
+                <td>{{ nursery.complement }}</td>
+                <td>{{ nursery.cp }}</td>
+                <td>{{ nursery.city }}</td>
+                {# <td>{{ nursery.tel }}</td>
+                <td>{{ nursery.capacity }}</td>
+                <td>{{ nursery.capacityresa }}</td> #}
+                <td class="text-end">{{ nursery.isActive ? 'Oui' : 'Non' }}</td>
+                {# <td>{{ nursery.slug }}</td> #}
+                <td class="text-end">
+                    <a href="{{ path('app_admin_nursery_show', {'id': nursery.id}) }}" class="btn btn-dark" title="Détails">
+                        <i class="align-middle" data-feather="eye"></i>
+                    </a>
+                    <a href="{{ path('app_admin_nursery_edit', {'id': nursery.id}) }}" class="btn btn-success" title="Modifier">
+                        <i class="align-middle" data-feather="edit-3"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucunes données présentes</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# display navigation #}
+    <div class="navpag d-flex justify-content-center align-items-center">
+        {{ knp_pagination_render(nurseries) }}
+    </div>
+
+{% endblock %}
