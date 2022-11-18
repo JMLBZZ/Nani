@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Nursery;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
 class NurseryFixtures extends Fixture
 {
@@ -163,4 +164,5 @@ class NurseryFixtures extends Fixture
 
         $manager->flush();
     }
+
 }

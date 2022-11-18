@@ -72,6 +72,9 @@ class Nursery
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $secretIV = null;
+
 // ##################################################################### //
 // ########################### GETTER/SETTER ########################### //
 // ##################################################################### //
@@ -247,6 +250,18 @@ class Nursery
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getSecretIV(): ?string
+    {
+        return $this->secretIV;
+    }
+
+    public function setSecretIV(?string $secretIV): self
+    {
+        $this->secretIV = $secretIV;
 
         return $this;
     }

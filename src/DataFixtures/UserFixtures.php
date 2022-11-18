@@ -20,6 +20,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
     {
         $user = new User();
             $user->setEmail("admin@admin.com");
+            $user->setName("admin");
             $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
             $encodePassword=$this->encoder->hashPassword($user,"pass");
             $user->setPassword($encodePassword);

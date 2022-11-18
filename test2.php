@@ -8,3 +8,4 @@ modification de la forme d'un champs de formulaire :
 ancien code :
 {{ form_row(registrationForm.email) }}
 
+
