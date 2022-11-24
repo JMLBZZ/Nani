@@ -1,3 +1,32 @@
+{% set homeActive = "" %}
+{% set dashboardActive = "" %}
+{% set carouselActive = "" %}
+{% set nurseryActive = "" %}
+{% set userActive = "" %}
+{% set kidActive = "" %}
+
+
+
+{% if 'home' in app.request.pathinfo or 'accueil' in app.request.pathinfo %}
+    {% set homeActive = "active" %}
+    {% elseif 'dashboard' in app.request.pathinfo %}
+        {% set dashboardActive = "active" %}
+    {% elseif 'carousel' in app.request.pathinfo %}
+        {% set carouselActive = "active" %}
+    {% elseif 'nursery' in app.request.pathinfo %}
+        {% set nurseryActive = "active" %}
+    {% elseif 'user' in app.request.pathinfo %}
+        {% set userActive = "active" %}
+    {% elseif 'kid' in app.request.pathinfo %}
+        {% set kidActive = "active" %}
+
+{% else %}
+    {% set homeActive = "active" %}
+{% endif %}
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,7 +46,7 @@
 <div class="wrapper">
     <nav id="sidebar" class="sidebar js-sidebar">
         <div class="sidebar-content js-simplebar">
-            <a class="sidebar-brand" href="{{path ("app_admin_home_index")}}" title="Accueil">
+            <a class="sidebar-brand {{homeActive}}" href="{{path ("app_admin")}}" title="Accueil">
                 <span class="align-middle">
                     <img src="{{asset("images/logo-NANI.svg")}}" alt="logo NANI" width="30" height="24" class="d-inline-block align-text-top">
                     Nani-Admin
@@ -26,35 +55,42 @@
 
             <ul class="sidebar-nav">
 
-                <li class="sidebar-item active">
-                    <a class="sidebar-link" href="{{path ("app_admin_home_index")}}" title="Accueil">
-        <i class="align-middle" data-feather="home"></i> <span class="align-middle">Accueil</span>
-        </a>
+                <li class="sidebar-item {{homeActive}}">
+                    <a class="sidebar-link" href="{{path ("app_admin")}}" title="Accueil">
+                        <i class="align-middle" data-feather="home"></i> <span class="align-middle">Accueil</span>
+                    </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{path ("app_admin_home_index")}}" title="Tableau de bord">
-        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Tableau de bord</span>
-        </a>
+                    <a class="sidebar-link {{dashboardActive}}" href="{{path ("app_admin_home_index")}}" title="Tableau de bord">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Tableau de bord</span>
+                    </a>
                 </li>
 
-                <li class="sidebar-item">
+                <li class="sidebar-item {{carouselActive}}">
                     <a class="sidebar-link" href="{{path ("app_admin_carousel_index")}}">
-        <i class="align-middle" data-feather="image"></i> <span class="align-middle">Carousel</span>
-        </a>
+                        <i class="align-middle" data-feather="image"></i> <span class="align-middle">Carousel</span>
+                    </a>
                 </li>
 
-                <li class="sidebar-item">
+                <li class="sidebar-item {{nurseryActive}}">
                     <a class="sidebar-link" href="{{path ("app_admin_nursery_index")}}">
-        <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Crèches</span>
-        </a>
+                        <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Crèches</span>
+                    </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-blank.html">
-        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
-        </a>
+                <li class="sidebar-item {{userActive}}">
+                    <a class="sidebar-link" href="{{path ("app_admin_user_index")}}">
+                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilisateurs (Parent)</span>
+                    </a>
                 </li>
+
+                <li class="sidebar-item {{kidActive}}">
+                    <a class="sidebar-link" href="{{path ("app_admin_kid_index")}}">
+                        <i class="align-middle" data-feather="smile"></i> <span class="align-middle">Enfants</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </nav>

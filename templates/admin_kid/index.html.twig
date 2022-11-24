@@ -1,0 +1,49 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Enfants{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Enfants</h1>
+        <a href="{{ path('app_admin_kid_new') }}" class="btn btn-primary" title="Nouveau">Nouveau</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th class="text-end">Voir / Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for kid in kids %}
+            <tr>
+                {# <td>{{ kid.id }}</td> #}
+                <td>{{ kid.name }}</td>
+                <td>{{ kid.firstname }}</td>
+                <td>{{ kid.birthdate ? kid.birthdate|date("d/m/Y") : '' }}</td>
+                <td class="text-end">
+                    <a href="{{ path('app_admin_kid_show', {'id': kid.id}) }}" class="btn btn-dark" title="Détails">
+                        <i class="align-middle" data-feather="eye"></i>
+                    </a>
+                    <a href="{{ path('app_admin_kid_edit', {'id': kid.id}) }}" class="btn btn-success" title="Modifier">
+                        <i class="align-middle" data-feather="edit-3"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucunes données présentes</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {# display navigation #}
+    <div class="navpag d-flex justify-content-center align-items-center">
+        {{ knp_pagination_render(kids) }}
+    </div>
+{% endblock %}

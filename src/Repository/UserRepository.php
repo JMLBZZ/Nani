@@ -56,6 +56,47 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->save($user, true);
     }
 
+
+
+
+    public function findUserOnly(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.roles LIKE :val') // à la propriété "roles" on lui introduit le paramètre "val"
+            ->andWhere('u.roles NOT LIKE :val2') // à la propriété "roles" on lui rejète le paramètre "val2"
+            ->andWhere('u.roles NOT LIKE :val3') // à la propriété "roles" on lui rejète le paramètre "val3"
+            ->setParameter('val', '%ROLE_USER%') // on définit le paramètre "val" qui correspond au role utilisateur
+            ->setParameter('val2', '%ROLE_ADMIN%') // on définit le paramètre "val2" qui correspond au role administrateur
+            ->setParameter('val3', '%ROLE_NURSERY%') // on définit le paramètre "val2" qui correspond au role "nursery"
+
+            ->orderBy('u.name', 'ASC') // ordre ascendant par Nom
+            ->getQuery()
+            ->getResult();
+    }
+
+
+// ##################################################################### //
+// ############## METHODE ORIGINALE À RÉCUPÉRER AU CAS OÙ ############## //
+// ##################################################################### //
+    // public function search($value): array
+    // {
+    //     return $this->createQueryBuilder('u')// "u" est l'allias de table qui correspond à la première lettre de l'entité (user => u)
+    //         ->where("u.name LIKE :val")//je demande les noms qui ressemble à ce qui est recherché
+    //         ->orWhere('u.firstname LIKE :val')
+    //         ->setParameter('val', '%'.$value.'%')//% => peut importe la chaine de caractère (avant et/ou après)
+    //         ->orderBy('u.name', 'ASC')
+    //         // ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+
+// ##################################################################### //
+// ######################### FIN DE LA MÉTHODE ######################### //
+// ##################################################################### //
+
+
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

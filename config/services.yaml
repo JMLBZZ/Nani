@@ -60,3 +60,22 @@ services:
             - '%env(ENCRYPT_SECRET)%'
         tags:
             - { name : doctrine.orm.entity_listener, event: 'preUpdate', entity: 'App\Entity\Nursery', lazy: true }
+
+    # 3 écouteurs de service Kid
+    App\EventEntityListener\KidLoadEventListener:
+        arguments:
+            - '%env(ENCRYPT_SECRET)%'
+        tags:
+            - { name : doctrine.orm.entity_listener, event: 'postLoad', entity: 'App\Entity\Kid', lazy: true }
+
+    App\EventEntityListener\KidPersistEventListener:
+        arguments:
+            - '%env(ENCRYPT_SECRET)%'
+        tags:
+            - { name : doctrine.orm.entity_listener, event: 'prePersist', entity: 'App\Entity\Kid', lazy: true }
+
+    App\EventEntityListener\KidUpdateEventListener:
+        arguments:
+            - '%env(ENCRYPT_SECRET)%'
+        tags:
+            - { name : doctrine.orm.entity_listener, event: 'preUpdate', entity: 'App\Entity\Kid', lazy: true }

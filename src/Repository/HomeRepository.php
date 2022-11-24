@@ -39,6 +39,19 @@ class HomeRepository extends ServiceEntityRepository
         }
     }
 
+    public function search($value): array
+    {
+        return $this->createQueryBuilder('h')// "a" est l'allias de table qui correspond à la première lettre de l'entité (home => h)
+            ->where("h.title LIKE :val")//je demande les titres qui ressemble à ce qui est recherché
+            ->orWhere('h.text LIKE :val')
+            ->setParameter('val', '%'.$value.'%')//% => peut importe la chaine de caractère (avant et/ou après)
+            ->orderBy('h.title', 'ASC')
+            // ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Home[] Returns an array of Home objects
 //     */

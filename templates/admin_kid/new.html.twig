@@ -1,0 +1,11 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Nouvel enfant{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mt-3">Ajouter un enfant</h1>
+        <a href="{{ path('app_admin_kid_index') }}" class="btn btn-dark btn-sm rounded" title="Annuler">Annuler</a>
+    </div>
+    {{ include('admin_kid/_form.html.twig') }}
+{% endblock %}

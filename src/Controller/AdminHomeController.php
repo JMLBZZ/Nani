@@ -5,19 +5,32 @@ namespace App\Controller;
 use App\Entity\Home;
 use App\Form\HomeType;
 use App\Repository\HomeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/home')]
 class AdminHomeController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_home_index', methods: ['GET'])]
-    public function index(HomeRepository $homeRepository): Response
+    #[Route('/', name: 'app_admin_home_index', methods: ['GET', 'POST'])]
+    public function index(HomeRepository $homeRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        if (!is_null($request->request->get("search"))){
+            $query = $homeRepository->search($request->request->get("search"));
+        }else{
+            $query = $homeRepository->findBy([], ["title"=>"ASC"]);
+        }
+
+        $homes = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+        );
+
         return $this->render('admin_home/index.html.twig', [
-            'homes' => $homeRepository->findAll(),
+            'homes' => $homes,
         ]);
     }
 

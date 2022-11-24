@@ -23,6 +23,9 @@ class Kid
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $birthdate = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $secretIV = null;
+
 // ##################################################################### //
 // ########################### GETTER/SETTER ########################### //
 // ##################################################################### //
@@ -63,6 +66,18 @@ class Kid
     public function setBirthdate(\DateTimeInterface $birthdate): self
     {
         $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    public function getSecretIV(): ?string
+    {
+        return $this->secretIV;
+    }
+
+    public function setSecretIV(?string $secretIV): self
+    {
+        $this->secretIV = $secretIV;
 
         return $this;
     }

@@ -19,6 +19,11 @@ class AdminNurseryController extends AbstractController
     public function index(NurseryRepository $nurseryRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $query = $nurseryRepository->findBy([], ["name"=>"ASC"]);
+
+        usort($query, function ($item1, $item2) {
+            return $item1->getName() <=> $item2->getName();
+        });
+
         $nurseries = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/

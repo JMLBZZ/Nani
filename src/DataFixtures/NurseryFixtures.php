@@ -14,7 +14,7 @@ class NurseryFixtures extends Fixture
         $nursery = new Nursery();
             $nursery->setImageName('creche1.png');
             $nursery->setIsActive(true);
-            $nursery->setName("Les choupinous");
+            $nursery->setName("ZLes choupinous");
             $nursery->setSlug("les-choupinous");
             $nursery->setSiret("11223344556677");
             $nursery->setStreet("1 Place de la Nation");
@@ -59,7 +59,7 @@ class NurseryFixtures extends Fixture
         $nursery = new Nursery();
             $nursery->setImageName('creche1.png');
             $nursery->setIsActive(true);
-            $nursery->setName("Les choupinous");
+            $nursery->setName("FLes choupinous");
             $nursery->setSlug("les-choupinous");
             $nursery->setSiret("11223344556677");
             $nursery->setStreet("1 Place de la Nation");
@@ -74,7 +74,7 @@ class NurseryFixtures extends Fixture
         $nursery = new Nursery();
             $nursery->setImageName('creche1.png');
             $nursery->setIsActive(true);
-            $nursery->setName("Les choupinous");
+            $nursery->setName("CLes choupinous");
             $nursery->setSlug("les-choupinous");
             $nursery->setSiret("11223344556677");
             $nursery->setStreet("1 Place de la Nation");
