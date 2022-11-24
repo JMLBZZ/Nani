@@ -17,7 +17,7 @@ class NurseryFixtures extends Fixture
             $nursery->setName("ZLes choupinous");
             $nursery->setSlug("les-choupinous");
             $nursery->setSiret("11223344556677");
-            $nursery->setStreet("1 Place de la Nation");
+            $nursery->setStreet("1 Place de la République");
             $nursery->setComplement("");
             $nursery->setCp("75011");
             $nursery->setCity("Paris");

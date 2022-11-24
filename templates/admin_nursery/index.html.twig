@@ -5,7 +5,21 @@
 {% block body %}
     <div class="d-flex justify-content-between align-items-center">
         <h1>Crèches</h1>
-        <a href="{{ path('app_admin_nursery_new') }}" class="btn btn-primary" title="Nouveau">Nouveau</a>
+
+        {# barre de recherche #}
+        <div class="d-flex">
+            <form method="post" class="d-flex mx-3">
+                <button type="submit" class="btn btn-dark" title="Rechercher">
+                    <i data-feather="search"></i>
+                </button>
+                <input type="text" name="search" class="form-control" placeholder="Rechercher">
+                <a href="{{ path('app_admin_nursery_index') }}" class="btn btn-danger" title="Annuler la recherche">
+                        <i class="align-middle" data-feather="x-square"></i>
+                    </a>
+            </form>
+
+            <a href="{{ path('app_admin_nursery_new') }}" class="btn btn-primary" title="Nouveau">Nouveau</a>
+        </div>
     </div>
 
     <table class="table">

@@ -14,15 +14,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin/kid')]
 class AdminKidController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_kid_index', methods: ['GET'])]
+    #[Route('/', name: 'app_admin_kid_index', methods: ['GET', 'POST'])]
     public function index(KidRepository $kidRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $query = $kidRepository->findBy([], ["name"=>"ASC"]);
-
-        usort($query, function ($item1, $item2) {
-            return $item1->getName() <=> $item2->getName();
-        });
-        
+        if (!is_null($request->request->get("search"))){
+            $search = strtolower($request->request->get("search"));
+            $allKids = $kidRepository->findAll();
+            $query=[];
+            foreach ($allKids as $kid) {
+                if (str_contains(strtolower($kid->getName()), $search) 
+                    || str_contains(strtolower($kid->getFirstname()), $search)
+                ){
+                    array_push($query, $kid);
+                }
+            }
+        }else{
+            $query = $kidRepository->findBy([], ["name"=>"ASC"]);
+            usort($query, function ($item1, $item2) {
+                return $item1->getName() <=> $item2->getName();
+            });
+        }
         $kids = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/

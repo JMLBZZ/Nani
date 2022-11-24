@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -78,6 +80,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $secretIV = null;
+
+    #[ORM\OneToMany(mappedBy: 'kids', targetEntity: Kid::class)]
+    private Collection $kids;
+
+    public function __construct()
+    {
+        $this->kids = new ArrayCollection();
+    }
 
 // ##################################################################### //
 // ########################### GETTER/SETTER ########################### //
@@ -322,6 +332,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSecretIV(?string $secretIV): self
     {
         $this->secretIV = $secretIV;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Kid>
+     */
+    public function getKids(): Collection
+    {
+        return $this->kids;
+    }
+
+    public function addKid(Kid $kid): self
+    {
+        if (!$this->kids->contains($kid)) {
+            $this->kids->add($kid);
+            $kid->setKids($this);
+        }
+
+        return $this;
+    }
+
+    public function removeKid(Kid $kid): self
+    {
+        if ($this->kids->removeElement($kid)) {
+            // set the owning side to null (unless already changed)
+            if ($kid->getKids() === $this) {
+                $kid->setKids(null);
+            }
+        }
 
         return $this;
     }

@@ -26,6 +26,9 @@ class Kid
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $secretIV = null;
 
+    #[ORM\ManyToOne(inversedBy: 'kids')]
+    private ?User $kids = null;
+
 // ##################################################################### //
 // ########################### GETTER/SETTER ########################### //
 // ##################################################################### //
@@ -78,6 +81,18 @@ class Kid
     public function setSecretIV(?string $secretIV): self
     {
         $this->secretIV = $secretIV;
+
+        return $this;
+    }
+
+    public function getKids(): ?User
+    {
+        return $this->kids;
+    }
+
+    public function setKids(?User $kids): self
+    {
+        $this->kids = $kids;
 
         return $this;
     }

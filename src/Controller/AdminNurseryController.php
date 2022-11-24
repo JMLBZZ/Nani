@@ -15,14 +15,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin/nursery')]
 class AdminNurseryController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_nursery_index', methods: ['GET'])]
+    #[Route('/', name: 'app_admin_nursery_index', methods: ['GET', 'POST'])]
     public function index(NurseryRepository $nurseryRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $query = $nurseryRepository->findBy([], ["name"=>"ASC"]);
-
-        usort($query, function ($item1, $item2) {
-            return $item1->getName() <=> $item2->getName();
-        });
+        if (!is_null($request->request->get("search"))){
+            $search = strtolower($request->request->get("search"));
+            $allNurseries = $nurseryRepository->findAll();
+            $query=[];
+            foreach ($allNurseries as $nursery) {
+                if (str_contains(strtolower($nursery->getName()), $search) 
+                    || str_contains(strtolower($nursery->getStreet()), $search)
+                    || str_contains(strtolower($nursery->getComplement()), $search)
+                    || str_contains(strtolower($nursery->getCp()), $search)
+                    || str_contains(strtolower($nursery->getCity()), $search)
+                    || str_contains(strtolower($nursery->getTel()), $search)
+                    || str_contains(strtolower($nursery->getSlug()), $search)
+                ){
+                    array_push($query, $nursery);
+                }
+            }
+        }else{
+            $query = $nurseryRepository->findBy([], ["name"=>"ASC"]);
+            usort($query, function ($item1, $item2) {
+                return $item1->getName() <=> $item2->getName();
+            });
+        }
 
         $nurseries = $paginator->paginate(
             $query, /* query NOT result */

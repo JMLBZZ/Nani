@@ -22,7 +22,15 @@ class AdminUserController extends AbstractController
             $allUsers = $userRepository->findAll();
             $query=[];
             foreach ($allUsers as $user) {
-                if (str_contains(strtolower($user->getName()), $search) || str_contains(strtolower($user->getFirstname()), $search)
+                if (str_contains(strtolower($user->getName()), $search) 
+                    || str_contains(strtolower($user->getFirstname()), $search)
+                    || str_contains(strtolower($user->getStreet()), $search)
+                    || str_contains(strtolower($user->getComplement()), $search)
+                    || str_contains(strtolower($user->getCp()), $search)
+                    || str_contains(strtolower($user->getCity()), $search)
+                    || str_contains(strtolower($user->getTel()), $search)
+                    || str_contains(strtolower($user->getEmail()), $search)
+                    || str_contains(strtolower($user->getSlug()), $search)
                 ){
                     array_push($query, $user);
                 }
