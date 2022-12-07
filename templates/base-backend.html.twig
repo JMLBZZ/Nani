@@ -91,13 +91,37 @@
                     </a>
                 </li>
 
+
+                <li class="sidebar-header">
+                    Admin
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{path ("app_front", {"verified":true})}}" target="_blank">
+                        <i class="align-middle" data-feather="monitor"></i>
+                        <span class="align-middle">
+                            Site Web
+                        </span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{path ("app_logout", {"verified":true})}}">
+                        <i class="align-middle" data-feather="user-x"></i>
+                        <span class="align-middle">
+                            Déconnexion
+                        </span>
+                    </a>
+                </li>
+
+
             </ul>
         </div>
     </nav>
 
     <div class="main">
         <nav class="navbar navbar-expand navbar-light navbar-bg">
-            <a class="sidebar-toggle js-sidebar-toggle">
+            <a class="sidebar-toggle js-sidebar-toggle mx-2">
                 <i class="hamburger align-self-center"></i>
             </a>
 
@@ -282,7 +306,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="{{asset ("js/app.js")}}"></script>
     <script src="{{asset ("js/lightbox.min.js")}}"></script>
-    <link rel="stylesheet" href="{{asset ('css/app.css')}}">
+    <script src="{{ asset('js/add-collection-widget.js') }}"></script>
     {% block javascripts %}{% endblock %}
 </body>
 </html>

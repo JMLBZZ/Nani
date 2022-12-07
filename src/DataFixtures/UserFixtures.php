@@ -20,7 +20,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
     {
         $user = new User();
             $user->setEmail("admin@admin.com");
-            $user->setName("admin");
+            $user->setName("Administrateur");
             $user->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
             $encodePassword=$this->encoder->hashPassword($user,"pass");
             $user->setPassword($encodePassword);
@@ -29,6 +29,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
 
         $user = new User();
             $user->setEmail("nursery@nursery.com");
+            $user->setName("Crèche");
             $user->setRoles(["ROLE_NURSERY"]);
             $encodePassword = $this->encoder->hashPassword($user, "pass");
             $user->setPassword($encodePassword);

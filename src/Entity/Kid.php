@@ -26,7 +26,7 @@ class Kid
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $secretIV = null;
 
-    #[ORM\ManyToOne(inversedBy: 'kids')]
+    #[ORM\ManyToOne(inversedBy: 'kids', cascade:["persist"])]
     private ?User $kids = null;
 
 // ##################################################################### //

@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class UserType extends AbstractType
 {
@@ -46,6 +47,14 @@ class UserType extends AbstractType
             ->remove('isVerified')
             ->remove('slug')
             ->remove('secretIV')
+
+            ->add('kids', CollectionType::class, [
+                "entry_type"=>KidType::class,// Attend un formulaire d'entrée prototype pour la collection KidType
+                // "entry_options"=>["fromUser"=>true],
+                "allow_add"=>true,// Autorise l'ajout du formulaire
+                "allow_delete"=>true,// Autorise la suppression du formulaire
+                "by_reference"=>false,// OBLIGATOIRE -> au cas où l'injection ne fonctionne pas
+                "label"=>false])// supprime le label du formulaire
         ;
     }
 

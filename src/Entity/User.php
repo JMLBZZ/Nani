@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?string $password = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -81,8 +81,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $secretIV = null;
 
-    #[ORM\OneToMany(mappedBy: 'kids', targetEntity: Kid::class)]
+    #[ORM\OneToMany(mappedBy: 'kids', targetEntity: Kid::class, cascade:["persist"])]
     private Collection $kids;
+
+// ##################################################################### //
+// ############################ CONSTRUCTEUR ########################### //
+// ##################################################################### //
 
     public function __construct()
     {

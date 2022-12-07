@@ -1,5 +1,35 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {# {{ form_widget(form) }} #}
+    {{form_row(form.civ)}}
+    {{form_row(form.name)}}
+    {{form_row(form.firstname)}}
+    {{form_row(form.street)}}
+    {{form_row(form.complement)}}
+    {{form_row(form.cp)}}
+    {{form_row(form.city)}}
+    {{form_row(form.tel)}}
+    {{form_row(form.email)}}
+
+
+    {% if form.kids is defined %}
+        <button type="button"
+            class="add-another-collection-widget btn btn-dark"
+            data-list-selector="#kid-list">
+            Ajouter un enfant
+        </button>
+
+        <ul id="kid-list" class="list-unstyled py-3"
+            data-prototype="{{ form_widget (form.kids.vars.prototype)|e }}"
+            data-widget-tags="{{ '<li class="bg-light border rounded my-3 p-3"></li>'|e }}"
+            data-widget-counter="{{ form.kids|length }}">
+            {% for kid in form.kids %}
+                <li>
+                    {{ form_errors(kid) }}
+                    {{ form_widget(kid) }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     
     {% include "admin_common/_required-fields.html.twig" %}
     <button class="btn btn-success mt-3" title="Enregistrer">

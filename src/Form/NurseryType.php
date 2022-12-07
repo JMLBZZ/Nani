@@ -24,7 +24,7 @@ class NurseryType extends AbstractType
                 "label"=>"Nom"])
             ->add('siret', TextType::class, [
                 "label"=>"Siret",
-                "attr"=>["maxlength"=>10],//bloque le clavier à 14 caractères
+                "attr"=>["maxlength"=>14],//bloque le clavier à 14 caractères
                 "required"=>false,
                 "help"=>"Le numéro Siret doit contenir uniquement 14 chiffres sans espaces", 
                 "help_attr"=>["class"=>"text-info"],])

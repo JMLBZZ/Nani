@@ -15,11 +15,11 @@
 
     
     <body>
-        <nav class="navbar ">
+        <nav class="navbar">
             <div class="container">
                 <a class="navbar-brand" href="{{path ("app_front")}}" title="Accueil">
                     <img src="{{asset("images/logo-NANI.svg")}}" alt="logo NANI" width="30" height="30" class="d-inline-block align-text-center">
-                    <p>NANI</p>
+                    NANI
                 </a>
 
                 <div class="d-flex flex-wrap align-items-center">
@@ -30,16 +30,6 @@
                                 {{ app.user.name }}
                                 {% endif %}
                         </div>
-                        <a href="{{path ("app_front")}}" class="text-decoration-none mx-2" title="Informations">
-                            <i class="bi bi-house-door"></i>
-                        </a>
-                        <a href="#" class="text-decoration-none mx-2" title="Informations">
-                            <i class="bi bi-info-circle"></i>
-                        </a>
-
-                        <a href="{{path ("app_login")}}" class="text-decoration-none mx-2" title="Connexion">
-                            <i class="bi bi-person"></i>
-                        </a>
 
                         {% if is_granted("ROLE_ADMIN") %}
                             <a class="nav-link mx-2" href="{{path ("app_admin", {"verified":true})}}" class="text-decoration-none mx-1" target="_blank" title="Paramètres Administrateur">
@@ -64,15 +54,11 @@
                             </button>
                         </a>
 
-                        <a href="{{path ("app_front")}}" class="text-decoration-none mx-2" title="Informations">
-                            <i class="bi bi-house-door"></i>
-                        </a>
-
-                        <a href="#" class="text-decoration-none mx-2" title="Informations">
+                        <a href="#" class="text-decoration-none mx-1" title="Informations">
                             <i class="bi bi-info-circle"></i>
                         </a>
 
-                        <a href="{{path ("app_login")}}" class="text-decoration-none mx-2" title="Connexion">
+                        <a href="{{path ("app_login")}}" class="text-decoration-none mx-1" title="Connexion">
                             <i class="bi bi-person"></i>
                         </a>
                     {% endif %}

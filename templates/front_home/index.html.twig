@@ -3,6 +3,11 @@
 {% block title %}Nani - Accueil{% endblock %}
 
 {% block body %}
+    {# <div class="bloc">
+        <video src="{{asset ("videos/nani_2mo.mp4")}}" autoplay="autoplay" muted="" loop="infinite"></video>
+        <h1 class="test">Nani</h1>
+    </div> #}
+
     <h3>
         {{ content.title }}
     </h3>
@@ -12,7 +17,7 @@
 
     {% if carousels is not null %}
 
-        <div id="home-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div id="home-carousel" class="carousel container-fluid align-items-center slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 {% for carousel in carousels %}
                     <button type="button" 
