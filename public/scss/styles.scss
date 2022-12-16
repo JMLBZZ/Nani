@@ -1,11 +1,17 @@
-// reset css
+// ################################ INIT ############################### //
 *{
     margin: 0;
     padding: 0;
     font-family: Calibri, Arial, Helvetica, sans-serif;
-    text-decoration: none; 
+    text-decoration: none;
+    box-sizing: border-box; 
 }
 
+ul{
+    list-style-type: none;
+}
+
+// ################################ BODY ############################### //
 body{
     label{
         &.required{
@@ -14,76 +20,65 @@ body{
                 color:red;}
             }
         }
+        background-image: url("../images/head/dodo\ -\ fondu3.png");
+        background-position: top right; 
+        background-size: 50%; 
+        background-repeat: no-repeat;  
 }
 
+main{
+    padding-bottom: 50px;
+}
+
+// ############################## NAV BAR ############################## //
+a.navbar-brand{
+    text-align: center;
+}
+
+ul.listicon li{
+    display: inline;
+    color: white;
+}
+
+
+.bi{
+    font-size: 2vh;
+    color: white;
+}
+a:hover{
+    font-weight: bold;
+}
+.btlogout{
+    margin-left: 3rem;
+}
+i.bi.bi-x-circle-fill:hover{
+    color:red;
+}
+.bticon{
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+// ############################## CAROUSEL ############################# //
 #home-carousel{
     width: 100%;
     max-width: 600px;
     text-align: center !important;
 }
 
-
+// ############################### TITRES ############################## //
 h1{
     font-size: 3vh !important;
     font-weight: bold;
     color:#0080FF;
 }
 
+// ######################### CHAMPS FORMULAIRES ######################## //
 .form-control{
     border-radius: 10vh !important;
     margin-bottom: 2vh !important;
 }
-
-.bi{
-    font-size: 2vh;
-}
-a:hover{
-    font-weight: bold;
-}
-
-li.nav-item{
-    margin: 0 0 0 2vw;
-}
-
-div#navbarNav{
-    background-color: green;
-    text-align : right;
-
-}
-/*
-.element{
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    padding: 0 5%;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-
-
-}
-
-nav{
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 20px 8%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-nav ul li{
-    list-style: none;
-    display: inline-block;
-    margin-left: 20px;
-}
-
-nav a{
-    text-decoration: none;
-    color: blue;
-}
+/* test pour video
 
 .bg-video{
     width: 100%;
@@ -105,3 +100,21 @@ nav a{
     margin-top: -10%;
 }
 */
+
+
+// ############################### FOOTER ############################## //
+
+footer{
+    position:absolute;/*à cause de la position absolute le texte peut être caché/serré sur les bords. il faut mettre un padding de minimum 38px dans la balise "main"*/
+    bottom:0;
+    width:100%;
+    text-align: center;
+    background-color: #0080FF;
+    color:white;
+    padding: 20px 0;
+    font-size:x-small;
+}
+
+
+
+

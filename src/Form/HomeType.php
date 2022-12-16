@@ -22,7 +22,7 @@ class HomeType extends AbstractType
                 "required"=>false])
             ->add('title', TextType::class, [
                 "label"=>"Titre",
-                "help"=>"titre du blabla", 
+                "help"=>"titre du texte d'accueil", 
                 "help_attr"=>["class"=>"text-danger"], 
                 "required"=>true])
             ->add('text', CKEditorType::class, [

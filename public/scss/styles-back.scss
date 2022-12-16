@@ -3,6 +3,7 @@
     margin: 0;
     font-family: Calibri, Arial, Helvetica, sans-serif;
     text-decoration: none !important; 
+    box-sizing: border-box;
 }
 
 body{
@@ -38,3 +39,8 @@ body{
         text-decoration:none;
     }
 }
+
+.h1{
+    color:#0080FF;
+}
+

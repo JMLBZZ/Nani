@@ -11,8 +11,8 @@ class HomeFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $home = new Home();
-        $home->setTitle ("bienvenue");
-        $home->setText("<p>blablatext</p>");
+        $home->setTitle ("Bienvenue");
+        $home->setText("<p>Texte présent en page d'accueil</p>");
         $home->setIsActive(true);
         $manager->persist($home);
 
