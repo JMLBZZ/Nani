@@ -6,11 +6,24 @@
     text-decoration: none;
     box-sizing: border-box; 
 }
-
-ul{
-    list-style-type: none;
+html{
+    font-size: 1.8vh;
 }
 
+ul{
+    padding: 0;
+    list-style-type: none;
+}
+a, li {
+    text-decoration: none;
+    list-style: none;
+    color: white;
+}
+
+a:hover{
+    color: white;
+    font-weight: bolder;
+}
 // ################################ BODY ############################### //
 body{
     label{
@@ -26,38 +39,105 @@ body{
         background-repeat: no-repeat;  
 }
 
-main{
-    padding-bottom: 50px;
+// ############################### NAVBAR ############################## //
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px;
+    background-color: #0080ff;
+    color: #fff;
 }
 
-// ############################## NAV BAR ############################## //
-a.navbar-brand{
-    text-align: center;
+.nav-links a {
+    color: #fff;
 }
 
-ul.listicon li{
-    display: inline;
-    color: white;
+// LOGO
+.logo {
+    font-size: 32px;
 }
 
+// MENU
+.menu {
+    display: flex;
+    gap: 0em;
+    font-size: 18px;
+}
 
-.bi{
-    font-size: 2vh;
-    color: white;
+.menu li:hover {
+    background-color: #45a2ff;
+    border-radius: 5px;
+    transition: 0.3s ease;
 }
-a:hover{
-    font-weight: bold;
+
+.menu li {
+    padding: 5px 14px;
 }
-.btlogout{
-    margin-left: 3rem;
+
+.menu-title{
+    background-color: red;
+    display: none;
 }
-i.bi.bi-x-circle-fill:hover{
-    color:red;
+
+.menu li a i.bi{
+    display: block;
 }
-.bticon{
-    text-decoration: none;
-    margin-left: 1rem;
+
+/*RESPONSIVE NAVBAR MENU STARTS*/
+/* CHECKBOX HACK */
+input[type=checkbox] {
+    display: none;
 }
+
+/*HAMBURGER MENU*/
+.hamburger {
+    display: none;
+    font-size: 24px;
+    user-select: none;
+}
+
+// ================ MEDIA QUERIES NAVBAR ================ //
+@media (max-width: 800px) {
+    .menu {
+        display: none;
+        position: absolute;
+        background-color: red;
+        right: 0;
+        left: 0;
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    .menu li:hover {
+        display: inline-block;
+        background-color: #45a2ff;
+        transition: 0.3s ease;
+    }
+
+    .menu li+li {
+        margin-top: 12px;
+    }
+
+    p.menu-title{
+        background-color: red;
+        display: block;
+    }
+
+    .menu li a i.bi{
+        display: none;
+    }
+
+    input[type=checkbox]:checked~.menu {
+        display: block;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+
 
 // ############################## CAROUSEL ############################# //
 #home-carousel{
@@ -66,54 +146,79 @@ i.bi.bi-x-circle-fill:hover{
     text-align: center !important;
 }
 
-// ############################### TITRES ############################## //
-h1{
-    font-size: 3vh !important;
-    font-weight: bold;
-    color:#0080FF;
-}
-
 // ######################### CHAMPS FORMULAIRES ######################## //
 .form-control{
     border-radius: 10vh !important;
     margin-bottom: 2vh !important;
 }
-/* test pour video
-
-.bg-video{
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -100;
-    margin-top: -20%;
-}
-
-.dodo{
-    width: 50%;
-    height: 50%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -100;
-    margin-top: -10%;
-}
-*/
-
 
 // ############################### FOOTER ############################## //
-
 footer{
-    position:absolute;/*à cause de la position absolute le texte peut être caché/serré sur les bords. il faut mettre un padding de minimum 38px dans la balise "main"*/
-    bottom:0;
-    width:100%;
-    text-align: center;
-    background-color: #0080FF;
-    color:white;
-    padding: 20px 0;
-    font-size:x-small;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #0080FF;
+    height: auto;
+    width: 100vw;
+
+    padding: 1%;
+    color: #fff;
 }
+
+.footer-container{
+    //background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-block{
+    //margin: 5px 0px 5px 0;
+    text-align: center;
+    align-items: center;
+}
+
+h6.footer-title{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+#copyright{
+    font-size: smaller;
+}
+
+// ================ MEDIA QUERIES FOOTER ================ //
+@media (min-width:800px) {
+
+    .footer{
+        padding: 2vh 5vh 2vh 5vh;
+    }
+
+    .footer-container{
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: start;
+        flex-direction: row;
+    }
+
+    .footer-block{
+        margin:0 10em;
+    }
+
+    ul.footer-list.list-social{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 8%;
+    }
+
+    .list-link li.footer-list-item{
+        text-align:end;    
+    }
+
+}//end of media queries
+
 
 
 
