@@ -1,5 +1,56 @@
-// ################################ INIT ############################### //
 *, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  background: #222;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+nav {
+  background: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+nav a {
+  color: #222;
+}
+.content {
+  padding: 125px 50px 50px;
+  background: royalblue;
+  flex-grow: 1;
+}
+h1 {
+  color: #f1f1f1;
+  text-align: center;
+}
+footer {
+  background: #f1f1f1;
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ################################ INIT ############################### //
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
@@ -34,15 +85,12 @@ body{
                 color:red;}
         }
     }
-    display: flex;
-    flex-direction: column;
-    
-    /*
+    min-height: 100%;
+    position: relative;
     background-image: url("../images/head/dodo\ -\ fondu3.png");
     background-position: top right; 
     background-size: 50%; 
-    background-repeat: no-repeat; 
-    */ 
+    background-repeat: no-repeat;  
 }
 
 // ############################### NAVBAR ############################## //
@@ -87,6 +135,7 @@ li#logout:hover {
 }
 
 .menu-title{
+    //background-color: red;
     display: none;
     font-size: 1rem;
 }
@@ -139,6 +188,7 @@ input[type=checkbox] {
     }
 
     p.menu-title{
+        //background-color: red;
         display: block;
         margin: 0;
     }
@@ -160,11 +210,6 @@ input[type=checkbox] {
     }
 }
 
-// ################################ MAIN ############################### //
-main{
-    padding: 125px 50px 50px;
-    flex-grow: 1;//prends tout l'espace restant
-}
 
 // ############################## CAROUSEL ############################# //
 #home-carousel{
@@ -181,18 +226,20 @@ main{
 
 // ############################### FOOTER ############################## //
 footer{
-    /*position: absolute;
-    height: auto;
-    width: 100vw;
+    position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;*/
+    right: 0;
     background: #0080FF;
-    padding: 10px;
+    height: auto;
+    width: 100vw;
+
+    padding: 1%;
     color: #fff;
 }
 
 .footer-container{
+    //background-color: red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -210,11 +257,15 @@ h6.footer-title{
     font-weight: bold;
 }
 #copyright{
-    font-size: small;
+    font-size: smaller;
 }
 
 // ================ MEDIA QUERIES FOOTER ================ //
 @media (min-width:800px) {
+
+    .footer{
+        padding: 2vh 5vh 2vh 5vh;
+    }
 
     .footer-container{
         flex-wrap: nowrap;
@@ -223,16 +274,19 @@ h6.footer-title{
         flex-direction: row;
     }
 
+    .footer-block{
+        margin:0 10em;
+    }
+
     ul.footer-list.list-social{
         display: flex;
         flex-direction: row;
         justify-content: center;
-        column-gap: 15%;
+        column-gap: 8%;
     }
 
     .list-link li.footer-list-item{
-        text-align:end;  
-        font-size: small;  
+        text-align:end;    
     }
 
 }//end of media queries
