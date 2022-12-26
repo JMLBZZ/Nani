@@ -9,6 +9,7 @@
 html, body{
     height: 100%;
     font-size: 1.8vh;
+    color : #696969;
 }
 
 ul{
@@ -43,6 +44,11 @@ body{
     background-size: 50%; 
     background-repeat: no-repeat; 
     */ 
+}
+
+h1{
+    color: #0080ff;
+    font-weight: bolder !important;
 }
 
 // ############################### NAVBAR ############################## //

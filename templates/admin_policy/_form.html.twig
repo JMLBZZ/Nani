@@ -1,0 +1,16 @@
+{{ form_start(form) }}
+
+    {{ form_row(form.isActive) }}
+        <div class="pt-1">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title) }}
+            {{ form_help(form.title) }}
+
+            {{ form_row(form.text) }}
+        </div>
+
+    {% include "admin_common/_required-fields.html.twig" %}
+    <button class="btn btn-success mt-3" title="Enregistrer">
+        {{ button_label|default('Enregistrer') }}
+    </button>
+{{ form_end(form) }}

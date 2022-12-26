@@ -4,7 +4,7 @@
 {% set nurseryActive = "" %}
 {% set userActive = "" %}
 {% set kidActive = "" %}
-
+{% set policyActive = "" %}
 
 
 {% if 'home' in app.request.pathinfo or 'accueil' in app.request.pathinfo %}
@@ -19,10 +19,14 @@
         {% set userActive = "active" %}
     {% elseif 'kid' in app.request.pathinfo %}
         {% set kidActive = "active" %}
+    {% elseif 'policy' in app.request.pathinfo %}
+        {% set policyActive = "active" %}
 
 {% else %}
     {% set homeActive = "active" %}
 {% endif %}
+
+
 
 
 
@@ -35,6 +39,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{% block title %} Accueil {% endblock %} - NANI - Admin</title>
+        <link rel="icon" href="{{asset("images/logo-NANI.svg")}}">
+
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/lightbox.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles-back.min.css') }}">
@@ -56,38 +62,47 @@
             <ul class="sidebar-nav">
 
                 <li class="sidebar-item {{homeActive}}">
-                    <a class="sidebar-link" href="{{path ("app_admin")}}" title="Accueil">
-                        <i class="align-middle" data-feather="home"></i> <span class="align-middle">Accueil</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{dashboardActive}}" href="{{path ("app_admin_home_index")}}" title="Tableau de bord">
+                    <a class="sidebar-link" href="{{path ("app_admin")}}" title="Tableau de bord">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Tableau de bord</span>
                     </a>
                 </li>
 
+                <li class="sidebar-header">
+                    Pages
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{dashboardActive}}" href="{{path ("app_admin_home_index")}}" title="Accueil">
+                        <i class="align-middle" data-feather="home"></i> <span class="align-middle">Accueil</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item {{carouselActive}}">
-                    <a class="sidebar-link" href="{{path ("app_admin_carousel_index")}}">
+                    <a class="sidebar-link" href="{{path ("app_admin_carousel_index")}}" title="Carousel">
                         <i class="align-middle" data-feather="image"></i> <span class="align-middle">Carousel</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{nurseryActive}}">
-                    <a class="sidebar-link" href="{{path ("app_admin_nursery_index")}}">
+                    <a class="sidebar-link" href="{{path ("app_admin_nursery_index")}}" title="Crèches">
                         <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Crèches</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{userActive}}">
-                    <a class="sidebar-link" href="{{path ("app_admin_user_index")}}">
+                    <a class="sidebar-link" href="{{path ("app_admin_user_index")}}" title="Parent">
                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">Utilisateurs (Parent)</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{kidActive}}">
-                    <a class="sidebar-link" href="{{path ("app_admin_kid_index")}}">
+                    <a class="sidebar-link" href="{{path ("app_admin_kid_index")}}" title="Enfants">
                         <i class="align-middle" data-feather="smile"></i> <span class="align-middle">Enfants</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{policyActive}}">
+                    <a class="sidebar-link" href="{{path ("app_admin_policy_index")}}" title="Politique de confidentialité">
+                        <i class="align-middle" data-feather="sidebar"></i> <span class="align-middle">Politique de confidentialité</span>
                     </a>
                 </li>
 
@@ -97,7 +112,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{path ("app_front", {"verified":true})}}" target="_blank">
+                    <a class="sidebar-link" href="{{path ("app_front", {"verified":true})}}" target="_blank" title="Site web Nani">
                         <i class="align-middle" data-feather="monitor"></i>
                         <span class="align-middle">
                             Site Web
@@ -106,7 +121,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{path ("app_logout", {"verified":true})}}">
+                    <a class="sidebar-link" href="{{path ("app_logout", {"verified":true})}}" title="Déconnexion">
                         <i class="align-middle" data-feather="user-x"></i>
                         <span class="align-middle">
                             Déconnexion

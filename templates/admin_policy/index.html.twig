@@ -1,10 +1,10 @@
 {% extends 'base-backend.html.twig' %}
 
-{% block title %}Tableau de bord{% endblock %}
+{% block title %}Politique de confidentialité{% endblock %}
 
 {% block body %}
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Page d'accueil</h1>
+        <h1>Politique de confidentialité</h1>
 
         {# barre de recherche #}
         <div class="d-flex">
@@ -15,32 +15,34 @@
                 <input type="text" name="search" class="form-control" placeholder="Rechercher">
             </form>
 
-            <a href="{{ path('app_admin_home_new') }}" class="btn btn-primary" title="Nouveau">Nouveau</a>
+            <a href="{{ path('app_admin_policy_new') }}" class="btn btn-primary" title="Nouveau">Nouveau</a>
         </div>
     </div>
-    
+
     <table class="table">
         <thead>
             <tr>
                 {# <th>Id</th> #}
                 <th>Titre</th>
                 <th>Texte</th>
+                {# <th>UpdatedAt</th> #}
                 <th class="text-end">Activé ?</th>
                 <th class="text-end">Voir / Modifier</th>
             </tr>
         </thead>
         <tbody>
-        {% for home in homes %}
+        {% for policy in policies %}
             <tr>
-                {# <td>{{ home.id }}</td> #}
-                <td>{{ home.title }}</td>
-                <td>{{ home.text }}</td>
-                <td class="text-end">{{ home.isActive ? 'Oui' : 'Non' }}</td>
+                {# <td>{{ policy.id }}</td> #}
+                <td>{{ policy.title }}</td>
+                <td>{{ policy.text }}</td>
+                {# <td>{{ policy.updatedAt ? policy.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+                <td class="text-end">{{ policy.isActive ? 'Oui' : 'Non' }}</td>
                 <td class="text-end">
-                    <a href="{{ path('app_admin_home_show', {'id': home.id}) }}" class="btn btn-dark" title="Détails">
+                    <a href="{{ path('app_admin_policy_show', {'id': policy.id}) }}" class="btn btn-dark" title="Détails">
                         <i class="align-middle" data-feather="eye"></i>
                     </a>
-                    <a href="{{ path('app_admin_home_edit', {'id': home.id}) }}" class="btn btn-success" title="Modifier">
+                    <a href="{{ path('app_admin_policy_edit', {'id': policy.id}) }}" class="btn btn-success" title="Modifier">
                         <i class="align-middle" data-feather="edit-3"></i>
                     </a>
                 </td>
@@ -53,8 +55,8 @@
         </tbody>
     </table>
 
-    {# display navigation #}
+    {#display navigation 
     <div class="navpag d-flex justify-content-center align-items-center">
-        {{ knp_pagination_render(homes) }}
-    </div>
+    {{ knp_pagination_render(policies) }}
+    </div>#}
 {% endblock %}
