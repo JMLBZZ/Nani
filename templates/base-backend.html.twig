@@ -5,6 +5,7 @@
 {% set userActive = "" %}
 {% set kidActive = "" %}
 {% set policyActive = "" %}
+{% set cgvActive = "" %}
 
 
 {% if 'home' in app.request.pathinfo or 'accueil' in app.request.pathinfo %}
@@ -21,6 +22,8 @@
         {% set kidActive = "active" %}
     {% elseif 'policy' in app.request.pathinfo %}
         {% set policyActive = "active" %}
+    {% elseif 'cgv' in app.request.pathinfo %}
+        {% set cgvActive = "active" %}
 
 {% else %}
     {% set homeActive = "active" %}
@@ -103,6 +106,11 @@
                 <li class="sidebar-item {{policyActive}}">
                     <a class="sidebar-link" href="{{path ("app_admin_policy_index")}}" title="Politique de confidentialité">
                         <i class="align-middle" data-feather="sidebar"></i> <span class="align-middle">Politique de confidentialité</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{cgvActive}}">
+                    <a class="sidebar-link" href="{{path ("app_admin_cgv_edit2")}}" title="Conditions Générales de Vente">
+                        <i class="align-middle" data-feather="award"></i> <span class="align-middle">CGV</span>
                     </a>
                 </li>
 

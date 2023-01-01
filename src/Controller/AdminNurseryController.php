@@ -59,6 +59,7 @@ class AdminNurseryController extends AbstractController
         $form->handleRequest($request);
         // dd($form->getData());
         if ($form->isSubmitted() && $form->isValid()) {
+            //$nursery->setRoles(["ROLE_NURSERY"]);
             $nurseryRepository->save($nursery, true);
 
             return $this->redirectToRoute('app_admin_nursery_index', [], Response::HTTP_SEE_OTHER);

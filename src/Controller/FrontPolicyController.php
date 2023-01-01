@@ -13,8 +13,6 @@ class FrontPolicyController extends AbstractController
     public function index(PolicyRepository $policyRepository): Response
     {
         $content = $policyRepository->findOneBy(["isActive" => true]);
-
-        //$content = $policyRepository->findOneBy(["isActive" => true]);
         return $this->render('front_policy/index.html.twig', [
             'content' => $content,
         ]);

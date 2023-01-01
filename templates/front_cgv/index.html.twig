@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nani - {{ content.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>
+            {{ content.title }}
+        </h1>
+        <div>
+            {{ content.text|raw }}
+        </div>
+    </div>
+{% endblock %}

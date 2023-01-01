@@ -11,21 +11,16 @@ html, body{
     font-size: 1.8vh;
     color : #696969;
 }
+a, li{
+    text-decoration: none;
+    list-style: none;
+}
 
 ul{
     padding: 0;
     list-style-type: none;
 }
-a, li {
-    text-decoration: none;
-    list-style: none;
-    color: white;
-}
 
-a:hover{
-    color: white;
-    font-weight: bolder;
-}
 // ################################ BODY ############################### //
 body{
     label{
@@ -51,6 +46,7 @@ h1{
     font-weight: bolder !important;
 }
 
+
 // ############################### NAVBAR ############################## //
 
 .navbar {
@@ -64,6 +60,16 @@ h1{
 
 .nav-links a {
     color: #fff;
+}
+
+a.logo-nani, a.footer-list-link {
+    text-decoration: none;
+    list-style: none;
+    color: white;
+}
+
+a.logo-nani:hover, a.footer-list-link:hover{
+    font-weight: bolder;
 }
 
 // LOGO
@@ -88,6 +94,7 @@ li#logout:hover {
     background-color: red;
 }
 
+
 .menu li {
     padding: 5px 14px;
 }
@@ -100,10 +107,13 @@ li#logout:hover {
 .menu li a i.bi{
     display: block;
 }
+div.menu{
+    padding:0;
+}
 
 /*RESPONSIVE NAVBAR MENU STARTS*/
 /* CHECKBOX HACK */
-input[type=checkbox] {
+input#checkbox_toggle[type=checkbox] {
     display: none;
 }
 
@@ -115,7 +125,7 @@ input[type=checkbox] {
 }
 
 // ================ MEDIA QUERIES NAVBAR ================ //
-@media (max-width: 800px) {
+@media (max-width: 768px) {
     .navbar{
         z-index:100;
     }
@@ -153,7 +163,7 @@ input[type=checkbox] {
         display: none;
     }
 
-    li#logout:hover{
+    li#logout {
         background-color: red;
     }
 
@@ -220,7 +230,7 @@ h6.footer-title{
 }
 
 // ================ MEDIA QUERIES FOOTER ================ //
-@media (min-width:800px) {
+@media (min-width:768px) {
 
     .footer-container{
         flex-wrap: nowrap;
@@ -240,6 +250,8 @@ h6.footer-title{
         text-align:end;  
         font-size: small;  
     }
+
+
 
 }//end of media queries
 
