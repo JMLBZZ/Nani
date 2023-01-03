@@ -280,4 +280,11 @@ class Nursery
 
         return $this;
     }
+
+    //protected function setRoles(toto)
+    /*
+    faire un set role avec variable toto
+    --> dedans on va récupérer la valeur du role de l'instance actuelle, pour la modifier
+    */
+    
 }

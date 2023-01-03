@@ -49,71 +49,6 @@
                 </div>
             </div>
 
-
-
-            <div class="contact-form">
-                <form action="index.html" autocomplete="off">
-                    <h3 class="title">&nbsp;</h3>
-
-                    <div class="input-container">
-                        {{ form_start(form) }}
-                        {{ form_row(form.nom, {'attr': {'class': 'input form-control','placeholder': 'Nom' }}) }}
-                    </div>
-
-                    <div class="input-container">
-                        {{ form_row(form.email, {'attr': {'class': 'input form-control','placeholder': 'E-mail' }}) }}
-                    </div>
-
-                    <div class="input-container">
-                        {{ form_row(form.phone, {'attr': {'class': 'input form-control','placeholder': 'Format : 0122334455'}}) }}
-                    </div>
-
-                    <div class="input-container">
-                        {{ form_row(form.message, {'attr': {'class': 'input textarea','placeholder': 'Message' }}) }}
-                    </div>
-                    <button class="btn btn-link" type="submit" title="Envoyer">
-                        Envoyer
-                    </button>
-
-                    {{ form_end(form) }}
-                </form>
-            </div>
-
-
-{#
-            <div class="col-sm-12">
-                <div class="form-group">
-                    {{ form_start(form) }}
-                    {{ form_row(form.nom, {'attr': {'class': 'form-control' }}) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_row(form.email, {'attr': {'class': 'form-control' }}) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_row(form.phone, {'attr': {'class': 'form-control' }}) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_row(form.message, {'attr': {'class': 'form-control' }}) }}
-                </div>
-                
-                <div class="form-group">
-                    <input type="submit" value="Envoyer" class="btn btn-primary py-3 px-5">
-                </div>
-
-                {{ form_end(form) }}
-            </div>
-#}
-
-
-
-
-
-
-{# -----------------------ORG------------------------------ #}
-{#
             <div class="contact-form">
                 <form action="index.html" autocomplete="off">
                     <h3 class="title">&nbsp;</h3>
@@ -137,7 +72,7 @@
                         Envoyer
                     </button>
                 </form>
-            </div>#}
+            </div>
         </div>
     </div>
 

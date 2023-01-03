@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use Exception;
 use App\Entity\Nursery;
+use App\Entity\User;
 use App\Form\NurseryType;
 use App\Repository\NurseryRepository;
+use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,7 +63,29 @@ class AdminNurseryController extends AbstractController
         // dd($form->getData());
         if ($form->isSubmitted() && $form->isValid()) {
             //$nursery->setRoles(["ROLE_NURSERY"]);
-            $nurseryRepository->save($nursery, true);
+            
+            // $nurseryRepository->save($nursery, true);// à remettre si le try-catch ne fonctionne pas
+
+            // ========================= B12 ======================== //
+            try{
+                $nurseryRepository->save($nursery, true);
+                // une fois sauvegardé dans la Nursery, implémenter mon instance pour la création du user 
+                $uToto = new User();
+                $uToto->setRoles(["ROLE_NURSERY"]);
+                $uToto->setName($nursery->getName);
+                $uToto->setRoles(["ROLE_NURSERY"]);
+                $uToto->setRoles(["ROLE_NURSERY"]);
+                $uToto->setEmail($nursery->getEmail());
+                //$userRepo = new UserRepository(ManagerRegistry $registery);
+                //$userRepo->save($uToto);
+            } catch (Exception $e) {
+                //$e->setmessage("toto error");
+            }
+            // BBO $$$$$$$$$$$$$$$$$$$$
+
+
+
+
 
             return $this->redirectToRoute('app_admin_nursery_index', [], Response::HTTP_SEE_OTHER);
         }
