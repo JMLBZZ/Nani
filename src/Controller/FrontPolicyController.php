@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FrontPolicyController extends AbstractController
 {
-    #[Route('/front/policy', name: 'app_front_policy')]
+    #[Route('/policy', name: 'app_front_policy')]
     public function index(PolicyRepository $policyRepository): Response
     {
         $content = $policyRepository->findOneBy(["isActive" => true]);

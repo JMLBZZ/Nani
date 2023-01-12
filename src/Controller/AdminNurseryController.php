@@ -66,13 +66,13 @@ class AdminNurseryController extends AbstractController
             
             // $nurseryRepository->save($nursery, true);// à remettre si le try-catch ne fonctionne pas
 
-            // ========================= B12 ======================== //
+            // ========================= TEST B12 ======================== //
             try{
                 $nurseryRepository->save($nursery, true);
                 // une fois sauvegardé dans la Nursery, implémenter mon instance pour la création du user 
                 $uToto = new User();
                 $uToto->setRoles(["ROLE_NURSERY"]);
-                $uToto->setName($nursery->getName);
+                $uToto->setName($nursery->getName());
                 $uToto->setRoles(["ROLE_NURSERY"]);
                 $uToto->setRoles(["ROLE_NURSERY"]);
                 $uToto->setEmail($nursery->getEmail());
@@ -81,7 +81,7 @@ class AdminNurseryController extends AbstractController
             } catch (Exception $e) {
                 //$e->setmessage("toto error");
             }
-            // BBO $$$$$$$$$$$$$$$$$$$$
+            // ========================= TEST B12 ======================== //
 
 
 
