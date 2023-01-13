@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Nursery;
+use App\Form\NurseryUserType;
 use App\Form\RegistrationFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -52,7 +53,7 @@ class NurseryType extends AbstractType
                 "label" => "Image", 
                 "required" => $options["imageRequired"], 
                 "mapped"=>true])
-            ->add("user", RegistrationFormType::class,["mapped"=>false])//
+            ->add("user", NurseryUserType::class)//
             ->remove('imageName')
             ->remove('slug')
         ;

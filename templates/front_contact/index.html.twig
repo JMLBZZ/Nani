@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="input-container">
-                            {{ form_row(form.subject, {'attr': {'class': 'input form-control','placeholder': 'Sujet du message' }}) }}
+                            {{ form_row(form.subject, {'attr': {'class': 'input form-control','placeholder': 'Sujet du message' }})|raw }}
                         </div>
 
                         <div class="input-container">
@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="input-container">
-                            {{ form_row(form.message, {'attr': {'class': 'input textarea','placeholder': 'Message' }}) }}
+                            {{ form_row(form.message, {'attr': {'class': 'input textarea','placeholder': 'Message' }})|raw }}
                         </div>
                         <button class="btn btn-link" type="submit" title="Envoyer">
                             Envoyer

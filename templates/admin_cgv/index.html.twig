@@ -35,7 +35,7 @@
             <tr>
                 {# <td>{{ cgv.id }}</td> #}
                 <td>{{ cgv.title }}</td>
-                <td>{{ cgv.text }}</td>
+                <td>{{ cgv.text |u.truncate(300) |raw }}...</td>
                 {# <td>{{ cgv.updatedAt ? cgv.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
                 <td>{{ cgv.isActive ? 'Oui' : 'Non' }}</td>
                 <td class="text-end">

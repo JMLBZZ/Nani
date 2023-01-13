@@ -78,6 +78,10 @@ class Nursery
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $email = null;
 
+    #[ORM\OneToOne(inversedBy: 'nursery', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
 // ##################################################################### //
 // ########################### GETTER/SETTER ########################### //
 // ##################################################################### //
@@ -286,5 +290,17 @@ class Nursery
     faire un set role avec variable toto
     --> dedans on va récupérer la valeur du role de l'instance actuelle, pour la modifier
     */
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
     
 }

@@ -28,16 +28,14 @@ class FrontContactController extends AbstractController
                 ->from($contactFormData['email'])
                 ->to('contact@nani.com')
                 ->subject('Vous avez reçu un mail de '.$contactFormData['name'])
-                //->htmlTemplate("emails/contactmail.html.twig")
-                ->text(
-                    "Expéditeur : ".$contactFormData['email'].\PHP_EOL.
-                    "Nom : ".$contactFormData['name'].\PHP_EOL.
-                    "Téléphone : ".$contactFormData['phone'].\PHP_EOL.
-                    "Sujet : ".$contactFormData['subject'].\PHP_EOL.
-                    "Message : ".$contactFormData['message'],
-                    'text/plain'
-                );
-
+                ->htmlTemplate("email/contactmail.html.twig")
+                ->context([
+                    "mail"=>$contactFormData['email'],
+                    "name"=>$contactFormData['name'],
+                    "phone"=>$contactFormData['phone'],
+                    "subject"=>$contactFormData['subject'],
+                    "message"=>$contactFormData['message'],
+                ]);
 
             $mailer->send($message);
 

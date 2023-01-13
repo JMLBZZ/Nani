@@ -12,6 +12,17 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
 {
     private $encoder;
 
+    public const NURSERYUSER1 = 'user1';
+    public const NURSERYUSER2 = 'user2';
+    public const NURSERYUSER3 = 'user3';
+    public const NURSERYUSER4 = 'user4';
+    public const NURSERYUSER5 = 'user5';
+    public const NURSERYUSER6 = 'user6';
+    public const NURSERYUSER7 = 'user7';
+    public const NURSERYUSER8 = 'user8';
+    public const NURSERYUSER9 = 'user9';
+    public const NURSERYUSER10 = 'user10';
+
     public function __construct(UserPasswordHasherInterface $encoder){
         $this->encoder=$encoder;
     }
@@ -28,13 +39,104 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $manager->persist($user);
 
         $user = new User();
-            $user->setEmail("nursery@nursery.com");
-            $user->setName("Crèche");
+            $user->setEmail("nursery1@nursery.com");
+            $user->setName("Crèche1");
             $user->setRoles(["ROLE_NURSERY"]);
             $encodePassword = $this->encoder->hashPassword($user, "pass");
             $user->setPassword($encodePassword);
             $user->setIsVerified(true);
         $manager->persist($user);
+        $this->addReference(self::NURSERYUSER1, $user);
+
+        $user = new User();
+            $user->setEmail("nursery2@nursery.com");
+            $user->setName("Crèche2");
+            $user->setRoles(["ROLE_NURSERY"]);
+            $encodePassword = $this->encoder->hashPassword($user, "pass");
+            $user->setPassword($encodePassword);
+            $user->setIsVerified(true);
+        $manager->persist($user);
+        $this->addReference(self::NURSERYUSER2, $user);
+
+        $user = new User();
+            $user->setEmail("nursery3@nursery.com");
+            $user->setName("Crèche3");
+            $user->setRoles(["ROLE_NURSERY"]);
+            $encodePassword = $this->encoder->hashPassword($user, "pass");
+            $user->setPassword($encodePassword);
+            $user->setIsVerified(true);
+        $manager->persist($user);
+        $this->addReference(self::NURSERYUSER3, $user);
+
+        $user = new User();
+            $user->setEmail("nursery4@nursery.com");
+            $user->setName("Crèche4");
+            $user->setRoles(["ROLE_NURSERY"]);
+            $encodePassword = $this->encoder->hashPassword($user, "pass");
+            $user->setPassword($encodePassword);
+            $user->setIsVerified(true);
+        $manager->persist($user);
+        $this->addReference(self::NURSERYUSER4, $user);
+
+        $user = new User();
+            $user->setEmail("nursery5@nursery.com");
+            $user->setName("Crèche5");
+            $user->setRoles(["ROLE_NURSERY"]);
+            $encodePassword = $this->encoder->hashPassword($user, "pass");
+            $user->setPassword($encodePassword);
+            $user->setIsVerified(true);
+        $manager->persist($user);
+        $this->addReference(self::NURSERYUSER5, $user);
+
+        $user = new User();
+            $user->setEmail("nursery6@nursery.com");
+            $user->setName("Crèche6");
+            $user->setRoles(["ROLE_NURSERY"]);
+            $encodePassword = $this->encoder->hashPassword($user, "pass");
+            $user->setPassword($encodePassword);
+            $user->setIsVerified(true);
+        $manager->persist($user);
+        $this->addReference(self::NURSERYUSER6, $user);
+
+        $user = new User();
+            $user->setEmail("nursery7@nursery.com");
+            $user->setName("Crèche7");
+            $user->setRoles(["ROLE_NURSERY"]);
+            $encodePassword = $this->encoder->hashPassword($user, "pass");
+            $user->setPassword($encodePassword);
+            $user->setIsVerified(true);
+        $manager->persist($user);
+        $this->addReference(self::NURSERYUSER7, $user);
+
+        $user = new User();
+            $user->setEmail("nursery8@nursery.com");
+            $user->setName("Crèche8");
+            $user->setRoles(["ROLE_NURSERY"]);
+            $encodePassword = $this->encoder->hashPassword($user, "pass");
+            $user->setPassword($encodePassword);
+            $user->setIsVerified(true);
+        $manager->persist($user);
+        $this->addReference(self::NURSERYUSER8, $user);
+
+        $user = new User();
+            $user->setEmail("nursery9@nursery.com");
+            $user->setName("Crèche9");
+            $user->setRoles(["ROLE_NURSERY"]);
+            $encodePassword = $this->encoder->hashPassword($user, "pass");
+            $user->setPassword($encodePassword);
+            $user->setIsVerified(true);
+        $manager->persist($user);
+        $this->addReference(self::NURSERYUSER9, $user);
+
+        $user = new User();
+            $user->setEmail("nursery10@nursery.com");
+            $user->setName("Crèche10");
+            $user->setRoles(["ROLE_NURSERY"]);
+            $encodePassword = $this->encoder->hashPassword($user, "pass");
+            $user->setPassword($encodePassword);
+            $user->setIsVerified(true);
+        $manager->persist($user);
+        $this->addReference(self::NURSERYUSER10, $user);
 
         $user = new User();
             $user->setEmail("test1@test.com");

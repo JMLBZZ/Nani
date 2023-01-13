@@ -40,6 +40,27 @@ class AdminPolicyController extends AbstractController
         ]);
     }
 
+
+    #[Route('/edit', name: 'app_admin_policy_edit2', methods: ['GET', 'POST'])]
+    public function edit2(Request $request, PolicyRepository $policyRepository): Response
+    {
+        $policy = $policyRepository -> findOneBy(["isActive" => true]);
+
+        $form = $this->createForm(PolicyType::class, $policy);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $policyRepository->save($policy, true);
+
+            return $this->redirectToRoute('app_admin_policy_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin_policy/edit.html.twig', [
+            'policy' => $policy,
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/{id}', name: 'app_admin_policy_show', methods: ['GET'])]
     public function show(Policy $policy): Response
     {

@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/admin/nursery')]
 class AdminNurseryController extends AbstractController
@@ -55,37 +56,23 @@ class AdminNurseryController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_nursery_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, NurseryRepository $nurseryRepository): Response
+    public function new(Request $request, NurseryRepository $nurseryRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
         $nursery = new Nursery();
         $form = $this->createForm(NurseryType::class, $nursery);
         $form->handleRequest($request);
         // dd($form->getData());
         if ($form->isSubmitted() && $form->isValid()) {
-            //$nursery->setRoles(["ROLE_NURSERY"]);
-            
-            // $nurseryRepository->save($nursery, true);// à remettre si le try-catch ne fonctionne pas
 
-            // ========================= TEST B12 ======================== //
-            try{
-                $nurseryRepository->save($nursery, true);
-                // une fois sauvegardé dans la Nursery, implémenter mon instance pour la création du user 
-                $uToto = new User();
-                $uToto->setRoles(["ROLE_NURSERY"]);
-                $uToto->setName($nursery->getName());
-                $uToto->setRoles(["ROLE_NURSERY"]);
-                $uToto->setRoles(["ROLE_NURSERY"]);
-                $uToto->setEmail($nursery->getEmail());
-                //$userRepo = new UserRepository(ManagerRegistry $registery);
-                //$userRepo->save($uToto);
-            } catch (Exception $e) {
-                //$e->setmessage("toto error");
-            }
-            // ========================= TEST B12 ======================== //
+            $nursery->getUser()->setRoles(["ROLE_NURSERY"]);
+            $password = $userPasswordHasherInterface->hashPassword($nursery->getUser(),$nursery->getUser()->getPassword());
+            $nursery->getUser()->setPassword($password);
 
+            $nursery->getUser()->setIsVerified(true);
 
+            $nurseryRepository->save($nursery, true);
 
-
+//dd($nursery->getUser()->getPassword());
 
             return $this->redirectToRoute('app_admin_nursery_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -84,6 +84,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'kids', targetEntity: Kid::class, cascade:["persist"])]
     private Collection $kids;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Nursery $nursery = null;
+
 // ##################################################################### //
 // ############################ CONSTRUCTEUR ########################### //
 // ##################################################################### //
@@ -203,7 +206,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -366,6 +369,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $kid->setKids(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNursery(): ?Nursery
+    {
+        return $this->nursery;
+    }
+
+    public function setNursery(Nursery $nursery): self
+    {
+        // set the owning side of the relation if necessary
+        if ($nursery->getUser() !== $this) {
+            $nursery->setUser($this);
+        }
+
+        $this->nursery = $nursery;
 
         return $this;
     }

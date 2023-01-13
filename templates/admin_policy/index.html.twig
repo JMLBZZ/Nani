@@ -35,7 +35,7 @@
             <tr>
                 {# <td>{{ policy.id }}</td> #}
                 <td>{{ policy.title }}</td>
-                <td>{{ policy.text }}</td>
+                <td>{{ policy.text |u.truncate(300) |raw}}...</td>
                 {# <td>{{ policy.updatedAt ? policy.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
                 <td class="text-end">{{ policy.isActive ? 'Oui' : 'Non' }}</td>
                 <td class="text-end">

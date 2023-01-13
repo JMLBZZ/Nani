@@ -23,10 +23,10 @@ class CgvType extends AbstractType
             ->add('text', CKEditorType::class, [
                 "label"=>"Texte", 
                 "required"=>true])
-            ->remove('isActive', CheckboxType::class, [
+            ->add('isActive', CheckboxType::class, [
                 "label"=>"Activer ?", 
                 "row_attr"=>["class"=>"form-switch"],
-                "required"=>false])
+                "required"=>true])
             ->remove('updatedAt')
         ;
     }
