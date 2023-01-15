@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FrontCgvController extends AbstractController
 {
-    #[Route('/front/cgv', name: 'app_front_cgv')]
+    #[Route('/cgv', name: 'app_front_cgv')]
     public function index(CgvRepository $cgvRepository): Response
     {
         $content = $cgvRepository->findOneBy(["isActive" => true]);

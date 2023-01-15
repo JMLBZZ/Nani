@@ -53,7 +53,8 @@ class NurseryType extends AbstractType
                 "label" => "Image", 
                 "required" => $options["imageRequired"], 
                 "mapped"=>true])
-            ->add("user", NurseryUserType::class)//
+            ->add("user", NurseryUserType::class, [
+                "label"=>" "])//
             ->remove('imageName')
             ->remove('slug')
         ;
