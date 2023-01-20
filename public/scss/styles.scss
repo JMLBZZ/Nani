@@ -41,7 +41,7 @@ body{
     */ 
 }
 
-h1{
+h1, h4{
     color: #0080ff;
     font-weight: bolder !important;
 }
@@ -185,7 +185,7 @@ main{
 // ############################## CAROUSEL ############################# //
 #home-carousel{
     width: 100%;
-    max-width: 600px;
+    //max-width: 600px;
     text-align: center !important;
 }
 

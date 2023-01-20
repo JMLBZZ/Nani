@@ -73,6 +73,7 @@
                         <div class="input-container">
                             {{ form_row(form.message, {'attr': {'class': 'input textarea','placeholder': 'Message' }})|raw }}
                         </div>
+                            {% include "admin_common/_required-fields-white.html.twig" %}
                         <button class="btn btn-link" type="submit" title="Envoyer">
                             Envoyer
                         </button>
