@@ -24,11 +24,4 @@ if(document.getElementById("bandeaucookies")){
         document.cookie = `NaniAcceptCookies=yes; expires=${expiration.toGMTString()}; path=/`//fonctionne dnas n'importe quel arborescence/chemin/page
         document.getElementById("bandeaucookies").classList.remove("ouvert");//on fait disparaitre la fenêtre
     });
-    
-}
-
-if (document.getElementById("bandeaucookies")) {
-    document.getElementById("NaniRejectCookies").addEventListener("click", () => {
-        document.getElementById("bandeaucookies").classList.remove("ouvert");
-    });
 }
