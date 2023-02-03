@@ -182,6 +182,20 @@ main{
     flex-grow: 1;//prends tout l'espace restant
 }
 
+// ############################### CARTES ############################## //
+.card{
+    border-color: transparent !important;
+    align-items: center !important;
+}
+.cardinfo{
+    width: 10em;
+}
+
+img.card-img-top{
+    width:5em !important;
+}
+
+
 // ############################## CAROUSEL ############################# //
 #home-carousel{
     width: 100%;
@@ -449,6 +463,29 @@ h6.footer-title{
 }//end of media queries
 
 
+/* ############################## COOKIES ############################## */
 
+#bandeaucookies{
+    background: red;
+    color: white;
+    width: 60vw;
+    border-radius: 0.8em;
+    text-align:center;
+    position: fixed;
+    top: 90%;//par rapport au coin supérieur gauche
+    left:50%;
+    transform: translate3d(-50%, -90%, 0);//recentre la div par rapport à l'écran
+    overflow:hidden;
+    transition:1s;
+    max-height: 0;
+    z-index: 9999;
+}
+#bandeaucookies p{
+    padding:1.5em 1em ;
 
+}
+
+#bandeaucookies.ouvert{
+    max-height: 100%;
+}
 

@@ -1,0 +1,76 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Cartes{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Cartes</h1>
+
+        {# barre de recherche #}
+        <div class="d-flex">
+            <form method="post" class="d-flex mx-3">
+                <button type="submit" class="btn btn-dark">
+                    <i data-feather="search"></i>
+                </button>
+                <input type="text" name="search" class="form-control" placeholder="Rechercher">
+            </form>
+
+            <a href="{{ path('app_admin_card_new') }}" class="btn btn-primary" title="Nouveau">Nouveau</a>
+        </div>
+    </div>
+
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Picto</th>
+                <th>Titre</th>
+                <th>Texte</th>
+                {# <th>UpdatedAt</th> #}
+                <th>Tag</th>
+                <th class="text-end">Activé ?</th>
+                <th class="text-end">Voir / Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for card in cards %}
+            <tr>
+                {# <td>{{ card.id }}</td> #}
+                <td>
+                    <a href="{{asset('images/card_picto/' ~ card.imageName)}}" data-lightbox="{{ card.imageName }}" data-title="{{ card.imageName }}">
+                        <img src="{{asset('images/card_picto/' ~ card.imageName)}}" class="img-list w-50" alt="{{ card.imageName }}">
+                    </a>
+                </td>
+
+                <td>{{ card.title |raw }}</td>
+                <td>{{ card.text |u.truncate(100) |raw }}...</td>
+                {# <td>{{ card.updatedAt ? card.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+                <td>{{ card.tag }}</td>
+                <td>{{ card.isActive ? 'Oui' : 'Non' }}</td>
+                <td class="text-end">
+                    <a href="{{ path('app_admin_card_show', {'id': card.id}) }}" class="btn btn-dark" title="Détails">
+                        <i class="align-middle" data-feather="eye"></i>
+                    </a>
+                    <a href="{{ path('app_admin_card_edit', {'id': card.id}) }}" class="btn btn-success" title="Modifier">
+                        <i class="align-middle" data-feather="edit-3"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {#display navigation#} 
+    <div class="navpag d-flex justify-content-center align-items-center">
+        {{ knp_pagination_render(cards) }}
+    </div> 
+
+{% endblock %}

@@ -8,16 +8,46 @@
         <h1 class="test">Nani</h1>
     </div> #}
 
-    <h1>
+    <h1 class="text-center">
         {{ content.title }}
     </h1>
-    <div>
+    <div class="text-center">
         {{ content.text|raw }}
     </div>
 
+    {% if cards is not null %}
+    <div class="d-flex flex-wrap mx-5">
+        {% for card in cards %}
+            <div class="d-flex text-center col-12 col-sm-12 col-md-6 col-lg-3 {% if loop.index0 == 0 %}active{% endif %}">
+                <div class="card h-100 w-100">
+                    {% if card.imageName is not null %}
+                        <img src="{{asset ("images/card_picto/" ~ card.imageName)}}" class="card-img-top w-10" alt="{{card.imageName}}">
+                        {% else %}
+                        <img src="{{ asset('images/card_picto/default.svg') }}" class="d-block w-10" alt="{{ card.imageName }}">
+                    {% endif %}
+                    <div class="card-body">
+                        {% if card.title is not null %}
+                            <h5 class="card-title">{{card.title|raw}}</h5>
+                        {% endif %}
+                        {% if card.text is not null %}
+                            <div class="card-text">{{card.text|raw}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div> 
+        {% endfor %}
+    </div>
+    {% endif %}
+
+<div class="container align-items-center text-center">
+    {{ render(controller("App\\Controller\\FrontController::cardinfo"))}}
+<button type="button" class="btn btn-light rounded-pill mb-4" title="infos">découvrir le service</bouton>
+</div>
+
+
     {% if carousels is not null %}
-<h4>Visitez une crèche!</h4>
-<p>Visitez une crèche comme si vous y étiez!</p>
+    <h4>Visitez une crèche!</h4>
+    <p>Visitez une crèche comme si vous y étiez!</p>
         <div id="home-carousel" class="carousel container-fluid align-items-center slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 {% for carousel in carousels %}
@@ -60,6 +90,5 @@
             </button>
         </div>
     {% endif %}
-    
 
 {% endblock %}

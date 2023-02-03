@@ -33,8 +33,8 @@
         {% for home in homes %}
             <tr>
                 {# <td>{{ home.id }}</td> #}
-                <td>{{ home.title }}</td>
-                <td>{{ home.text }}</td>
+                <td>{{ home.title |raw }}</td>
+                <td>{{ home.text |u.truncate(300) |raw}}...</td>
                 <td class="text-end">{{ home.isActive ? 'Oui' : 'Non' }}</td>
                 <td class="text-end">
                     <a href="{{ path('app_admin_home_show', {'id': home.id}) }}" class="btn btn-dark" title="Détails">

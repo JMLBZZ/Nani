@@ -1,0 +1,44 @@
+<h4 class="mt-5">Comment ça marche?</h4>
+    <div class="d-flex flex-wrap justify-content-center">
+    {% for card in cardinfo %}
+        <div class="w-15 text-center {% if loop.index0 == 0 %}active{% endif %}">
+            <div class="card cardinfo">
+                {% if card.imageName is not null %}
+                    <img src="{{asset ("images/card_picto/" ~ card.imageName)}}" class="card-img-top w-10" alt="{{card.imageName}}">
+                    {% else %}
+                    <img src="{{ asset('images/card_picto/default.svg') }}" class="d-block w-10" alt="{{ card.imageName }}">
+                {% endif %}
+                <div class="card-body">
+                    {% if card.title is not null %}
+                        <h5 class="card-title">{{card.title|raw}}</h5>
+                    {% endif %}
+                    {% if card.text is not null %}
+                        <div class="card-text">{{card.text|raw}}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div> 
+    {% endfor %}
+    </div>
+
+{# 
+<h4>Comment ça marche?</h4>
+    {% for card in cardinfo %}
+        <div class="d-flex text-center col-12 col-sm-12 col-md-6 col-lg-3 {% if loop.index0 == 0 %}active{% endif %}">
+            <div class="card h-100 w-100">
+                {% if card.imageName is not null %}
+                    <img src="{{asset ("images/card_picto/" ~ card.imageName)}}" class="card-img-top w-10" alt="{{card.imageName}}">
+                    {% else %}
+                    <img src="{{ asset('images/card_picto/default.svg') }}" class="d-block w-10" alt="{{ card.imageName }}">
+                {% endif %}
+                <div class="card-body">
+                    {% if card.title is not null %}
+                        <h5 class="card-title">{{card.title|raw}}</h5>
+                    {% endif %}
+                    {% if card.text is not null %}
+                        <div class="card-text">{{card.text|raw}}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div> 
+    {% endfor %} #}
