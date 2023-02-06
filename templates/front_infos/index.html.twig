@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nani - Informations{% endblock %}
+
+{% block body %}
+    <div class="container align-items-center text-center">
+        <h1 class="mt-5">NANI = crèches professionnelles + liberté d’accueil</h1>
+        <h3 class="soustitreinfos mb-5">Des places en crèche pour votre enfant en toute liberté !</h3>
+        <p>Nani est un service en ligne d’accueil en crèche qui dépanne tous les parents qui ont des besoins ponctuels.</p>
+        <p>Pour en bénéficier, c'est facile : on s’inscrit, on choisit sa crèche...
+        et hop on dépose son enfant quand on en a besoin !</p>
+        <p class="fs-5 fw-bolder">Anticipez, inscrivez-vous maintenant!</p>
+
+        {{ render(controller("App\\Controller\\FrontController::cardinfo"))}}
+
+        {% if not is_granted("ROLE_USER")%}
+            <button type="button" class="btn btn-success rounded-pill my-4" title="infos" onclick="window.location.href = '{{path ("app_front_infos")}}';">S'inscrire</bouton>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

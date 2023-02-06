@@ -41,7 +41,7 @@
 
 <div class="container align-items-center text-center">
     {{ render(controller("App\\Controller\\FrontController::cardinfo"))}}
-<button type="button" class="btn btn-light rounded-pill mb-4" title="infos">découvrir le service</bouton>
+<button type="button" class="btn btn-light rounded-pill mb-4" title="infos" onclick="window.location.href = '{{path ("app_front_infos")}}';">découvrir le service</bouton>
 </div>
 
 
