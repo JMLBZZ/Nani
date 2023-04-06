@@ -48,6 +48,10 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
         // For example:
         // return new RedirectResponse($this->urlGenerator->generate('some_route'));
+
+        if(in_array("ROLE_ADMIN", $token->getUser()->getRoles())){
+            return new RedirectResponse($this->urlGenerator->generate('app_admin_home_index'));
+        }
         
         if(in_array("ROLE_USER", $token->getUser()->getRoles())){
             if($token->getUser()->isVerified()==true){
@@ -63,10 +67,6 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             }else{
                 return new RedirectResponse($this->urlGenerator->generate('app_logout', ["verified"=>false]));
             }
-        }
-
-        if(in_array("ROLE_ADMIN", $token->getUser()->getRoles())){
-            return new RedirectResponse($this->urlGenerator->generate('app_admin_home_index'));
         }
 
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
